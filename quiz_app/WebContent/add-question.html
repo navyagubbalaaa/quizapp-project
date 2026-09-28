@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Quiz Question</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #1976d2;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #125ca1;
+    }
+  </style>
+
+  <script>
+    function toggleOptions() {
+      const type = document.getElementById("type").value;
+      const options = document.getElementById("mcq-options");
+      options.style.display = type === "TF" ? "none" : "block";
+    }
+
+    // Ensure correct visibility on page load
+    window.onload = toggleOptions;
+  </script>
+</head>
+<body>
+  <form method="post" action="add-question">
+    <h2>Add a Quiz Question</h2>
+
+    <div class="form-group">
+      <label for="questionText">Question Text:</label>
+      <textarea name="questionText" id="questionText" rows="3" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Question Type:</label>
+      <select name="type" id="type" onchange="toggleOptions()" required>
+        <option value="MCQ">Multiple Choice (MCQ)</option>
+        <option value="TF">True/False</option>
+      </select>
+    </div>
+
+    <div id="mcq-options">
+      <div class="form-group">
+        <label>Option A:</label>
+        <input type="text" name="optionA">
+      </div>
+      <div class="form-group">
+        <label>Option B:</label>
+        <input type="text" name="optionB">
+      </div>
+      <div class="form-group">
+        <label>Option C:</label>
+        <input type="text" name="optionC">
+      </div>
+      <div class="form-group">
+        <label>Option D:</label>
+        <input type="text" name="optionD">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="correctAnswer">Correct Answer:</label>
+      <input type="text" name="correctAnswer" id="correctAnswer" placeholder="e.g., True/False" required>
+    </div>
+
+    <button type="submit">Add Question</button>
+  </form>
+</body>
+</html>
